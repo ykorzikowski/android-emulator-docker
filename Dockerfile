@@ -11,7 +11,7 @@ RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | te
 && apt-get update && apt-get install oracle-java8-installer oracle-java8-set-default -y
 
 # Install another dependencies
-RUN apt-get install gnupg2 git wget unzip gcc-multilib libglu1 -y
+RUN apt-get install gnupg2 git wget unzip gcc-multilib libglu1 xz-utils -y
 
 #Install Android
 ENV ANDROID_HOME /opt/android
@@ -31,6 +31,12 @@ RUN yes | sdkmanager "extras;google;m2repository" --verbose
 # Add platform-tools and emulator to path
 ENV PATH $PATH:$ANDROID_HOME/platform-tools
 ENV PATH $PATH:$ANDROID_HOME/emulator
+
+# Install Flutter
+ENV FLUTTER_HOME /opt/flutter
+RUN wget -O flutter_linux_v1.2.1-stable.tar.xz https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v1.2.1-stable.tar.xz --show-progress \
+ && tar xf flutter_linux_v1.2.1-stable.tar.xz -C /opt && rm flutter_linux_v1.2.1-stable.tar.xz
+ENV PATH $PATH:$FLUTTER_HOME/bin
 
 #Install latest android emulator system images
 ENV EMULATOR_IMAGE "system-images;android-24;google_apis;x86_64"
@@ -52,6 +58,6 @@ ADD unlock_emulator.sh /bin/unlock_emulator
 RUN chmod +x /bin/unlock_emulator
 
 #Label
-MAINTAINER Nilton Vasques <nilton.vasques@gmail.com>
-LABEL Version="0.1.7" \
-      Description="Android SDK and emulator environment"
+MAINTAINER Yannik Korzikowski <docker@korzikowski.de>
+LABEL Version="0.1.0" \
+      Description="Android SDK and emulator environment with flutter"
