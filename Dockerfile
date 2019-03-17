@@ -23,6 +23,7 @@ ENV PATH $PATH:$ANDROID_HOME/tools/bin
 RUN yes | sdkmanager --update --verbose
 RUN yes | sdkmanager "platform-tools" --verbose
 RUN yes | sdkmanager "platforms;android-27" --verbose
+RUN yes | sdkmanager "platforms;android-28" --verbose
 RUN yes | sdkmanager "build-tools;27.0.0" --verbose
 RUN yes | sdkmanager "build-tools;28.0.3" --verbose
 RUN yes | sdkmanager "extras;android;m2repository" --verbose
@@ -39,14 +40,14 @@ RUN wget -O flutter_linux_v1.2.1-stable.tar.xz https://storage.googleapis.com/fl
 ENV PATH $PATH:$FLUTTER_HOME/bin
 
 #Install latest android emulator system images
-ENV EMULATOR_IMAGE "system-images;android-24;google_apis;x86_64"
-RUN yes | sdkmanager $EMULATOR_IMAGE --verbose
+RUN yes | sdkmanager "system-images;android-24;google_apis;x86_64" --verbose
+RUN yes | sdkmanager "system-images;android-25;google_apis;x86_64" --verbose
+RUN yes | sdkmanager "system-images;android-26;google_apis;x86_64" --verbose
+RUN yes | sdkmanager "system-images;android-27;google_apis;x86_64" --verbose
+RUN yes | sdkmanager "system-images;android-28;google_apis;x86_64" --verbose
 
 # Copy Qt library files to system folder
 RUN cp -a /opt/android/emulator/lib64/qt/lib/. /usr/lib/x86_64-linux-gnu/
-
-# Creating a emulator with sdcard
-RUN echo "no" | avdmanager -v create avd -n test -k $EMULATOR_IMAGE -c 100M
 
 ADD start_emulator.sh /bin/start_emulator
 RUN chmod +x /bin/start_emulator
@@ -59,5 +60,5 @@ RUN chmod +x /bin/unlock_emulator
 
 #Label
 MAINTAINER Yannik Korzikowski <docker@korzikowski.de>
-LABEL Version="0.1.0" \
+LABEL Version="0.1.1" \
       Description="Android SDK and emulator environment with flutter"
