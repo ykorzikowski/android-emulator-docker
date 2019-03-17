@@ -4,7 +4,7 @@
 
 * Launch, wait and unlock the emulator
 
-        docker run --privileged -v /dev/kvm:/dev/kvm --rm niltonvasques/android-sdk-and-emulator:0.1.5 \
+        docker run --privileged -v /dev/kvm:/dev/kvm --rm flutter-android-sdk-and-emulator:0.1.0 \
         bash -c "start_emulator && wait_emulator && unlock_emulator"
 
 * Usage with Drone CI
