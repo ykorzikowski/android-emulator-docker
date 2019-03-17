@@ -11,15 +11,14 @@
 
 ```yml
 build:
-  image: niltonvasques/android-sdk-and-emulator:0.1.5
+  image: ykorzikowski/flutter-android-sdk-and-emulator:0.1.0
   privileged: true
   commands:
     - cp -a /drone/.gradle /root/ && rm -Rf /drone/.gradle
     - start_emulator && wait_emulator
-    - ./gradlew check --daemon -PdisablePreDex --stacktrace
-    - ./gradlew assembleDebugAndroidTest --daemon -PdisablePreDex --stacktrace
+    - flutter build
     - unlock_emulator
-    - ./gradlew cC --daemon -PdisablePreDex --stacktrace
+    - flutter drive --target=test_driver/app_full.dart
     - cp -a /root/.gradle /drone/
 cache:
   mount:
