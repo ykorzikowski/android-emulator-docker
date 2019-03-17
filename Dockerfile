@@ -43,7 +43,7 @@ ENV PATH $PATH:$FLUTTER_HOME/bin
 RUN yes | sdkmanager "system-images;android-24;google_apis;x86_64" --verbose
 RUN yes | sdkmanager "system-images;android-25;google_apis;x86_64" --verbose
 RUN yes | sdkmanager "system-images;android-26;google_apis;x86_64" --verbose
-RUN yes | sdkmanager "system-images;android-27;google_apis;x86_64" --verbose
+RUN yes | sdkmanager "system-images;android-27;google_apis;x86" --verbose
 RUN yes | sdkmanager "system-images;android-28;google_apis;x86_64" --verbose
 
 # Copy Qt library files to system folder
