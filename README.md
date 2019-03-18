@@ -19,7 +19,7 @@
       path: /dev/kvm
   environment:
     DEVICE_ID: "10.1in WXGA (Tablet)"
-    API_LEVEL: "24" # 24-28
+    SYSTEM_IMAGE: "system-images;android-27;google_apis;x86"
   commands:
     - start_emulator && wait_emulator && unlock_emulator
     - flutter drive --target=test_driver/app_full.dart
@@ -67,9 +67,9 @@ id: 33 or "7in WSVGA (Tablet)"
 ```
 
 ```
-Pie 	9 	API level 28
-Oreo 	8.1.0 	API level 27
-Oreo 	8.0.0 	API level 26
-Nougat 	7.1 	API level 25
-Nougat 	7.0 	API level 24
+system-images;android-24;google_apis;x86_64
+system-images;android-25;google_apis;x86_64
+system-images;android-26;google_apis;x86_64
+system-images;android-27;google_apis;x86
+system-images;android-28;google_apis;x86_64
 ```
