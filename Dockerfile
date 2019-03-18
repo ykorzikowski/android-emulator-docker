@@ -60,5 +60,5 @@ RUN chmod +x /bin/unlock_emulator
 
 #Label
 MAINTAINER Yannik Korzikowski <docker@korzikowski.de>
-LABEL Version="0.1.1" \
+LABEL Version="0.1.3" \
       Description="Android SDK and emulator environment with flutter"
